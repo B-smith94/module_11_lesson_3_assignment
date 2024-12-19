@@ -9,7 +9,7 @@ const Characterlist = ({ onCharacterSelect }) => {
     useEffect(() => {
         const fetchCharacters = async () => {
             try {
-                const response = await axios.get('https://gateway.marvel.com/v1/public/characters?ts=1&apikey=2c38d2f50c1dafd6d0b666d561b6b2dd&hash=ec985be0cde1d02176d8beaad6d9fdac');
+                const response = await axios.get('https://gateway.marvel.com/v1/public/characters?ts=1&apikey=<>&hash=<>');
                 setCharacters(response.data.data.results)
                 console.log(response.data.data.results);
 

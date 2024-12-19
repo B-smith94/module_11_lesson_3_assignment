@@ -7,7 +7,7 @@ const CharacterDetail = ({ characterId }) => {
     useEffect(() => {
         const fetchCharacter = async () => {
             try {
-                const response = await axios.get(`https://gateway.marvel.com/v1/public/characters/${characterId}?ts=1&apikey=2c38d2f50c1dafd6d0b666d561b6b2dd&hash=ec985be0cde1d02176d8beaad6d9fdac`);
+                const response = await axios.get(`https://gateway.marvel.com/v1/public/characters/${characterId}?ts=1&apikey=<>&hash=<>`);
                 setCharacter(response.data.data.results)
                 console.log(character)
 
