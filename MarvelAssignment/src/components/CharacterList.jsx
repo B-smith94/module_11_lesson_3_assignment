@@ -1,29 +1,34 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import styles from './Characters.module.css'
 
-const Characterlist = () => {
+
+const Characterlist = ({ onCharacterSelect }) => {
     const [characters, setCharacters] = useState([]);
 
     useEffect(() => {
         const fetchCharacters = async () => {
             try {
-                const response = await axios.get('https://gateway.marvel.com/v1/public/characters?ts=1&apikey=<YOUR PUBLIC KEY>&hash=<YOUR HASH>');
-                console.log(response.data.data.results);
+                const response = await axios.get('https://gateway.marvel.com/v1/public/characters?ts=1&apikey=2c38d2f50c1dafd6d0b666d561b6b2dd&hash=ec985be0cde1d02176d8beaad6d9fdac');
                 setCharacters(response.data.data.results)
-                
+                console.log(response.data.data.results);
+
             } catch (error) {
                 console.error('Error fetching characters', error)
             }
         }
             fetchCharacters();
-
     }, []);
+
 
     const characterList = characters.map((character, index)=> {
         return (
-        <li key={index} style={{ listStyle: "none" }}>
-            {character.name} <img src={`${character.thumbnail.path}/portrait_medium.jpg`} alt="" />
-        </li>
+        <div className={styles.container} key={index}>
+            <div>{character.name}</div>
+            <button onClick={() => onCharacterSelect(character.id)}>
+                <img className={styles.img} src={`${character.thumbnail.path}/landscape_small.jpg`} alt="image not available" />
+            </button>
+        </div>
         )
 
     })
@@ -31,9 +36,7 @@ const Characterlist = () => {
     return (
         <div>
             <h3>Characters</h3>
-            <ul>
                 {characterList}
-            </ul>
         </div>
     );
 };
